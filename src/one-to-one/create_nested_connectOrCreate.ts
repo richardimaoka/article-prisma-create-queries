@@ -26,21 +26,21 @@ async function main() {
   //     },
   //   });
 
-  const aliceUser = await prisma.userWithBio.create({
+  const user = await prisma.userWithBio.create({
     data: {
       name: "Alice",
     },
   });
 
-  console.log("created user:", aliceUser);
+  console.log("created user:", user);
 
-  const bioAlice = await prisma.bio.create({
+  const bio = await prisma.bio.create({
     data: {
       text: "Alice's Bio",
       user: {
         connectOrCreate: {
           where: {
-            id: aliceUser.id,
+            id: user.id,
           },
           create: {
             name: "Alice",
@@ -50,36 +50,18 @@ async function main() {
     },
   });
 
-  console.log("created bio 1:", bioAlice);
+  console.log("created bio:", bio);
 
-  const bioBob = await prisma.bio.create({
-    data: {
-      text: "Bob's Bio",
-      user: {
-        connectOrCreate: {
-          where: {
-            id: -1, //non-existent ID
-          },
-          create: {
-            name: "Bob",
-          },
-        },
-      },
-    },
-  });
-
-  console.log("created bio 2:", bioBob);
-
-  const foundUsers = await prisma.userWithBio.findMany({
+  const foundUser = await prisma.userWithBio.findUnique({
     include: {
       bio: true,
     },
     where: {
-      id: { in: [aliceUser.id, bioBob.userId] },
+      id: user.id,
     },
   });
 
-  console.log("found users:", foundUsers);
+  console.log("found user:", foundUser);
 }
 
 main()
