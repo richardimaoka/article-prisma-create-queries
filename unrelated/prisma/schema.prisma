@@ -12,29 +12,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/////////////////////////////////
-// unreleated 
-/////////////////////////////////
 model User {
   id   Int    @id @default(autoincrement())
   name String
-}
-
-/////////////////////////////////
-// one-to-one (optional)
-/////////////////////////////////
-model UserWithBio {
-  id   Int    @id @default(autoincrement())
-  name String
-  bio  Bio? //This has to be optional, otherwise, this error:
-  // Error parsing attribute "@relation": The relation field `bio` on Model `UserWithBio` is required.
-  // This is not valid because it's not possible to enforce this constraint on the database level.
-  // Please change the field type from `Bio` to `Bio?` to fix this.Prisma
-}
-
-model Bio {
-  id     Int         @id @default(autoincrement())
-  text   String
-  user   UserWithBio @relation(fields: [userId], references: [id])
-  userId Int         @unique
 }

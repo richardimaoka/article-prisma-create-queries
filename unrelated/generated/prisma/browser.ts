@@ -22,13 +22,3 @@ export * from './enums';
  * 
  */
 export type User = Prisma.UserModel
-/**
- * Model UserWithBio
- * 
- */
-export type UserWithBio = Prisma.UserWithBioModel
-/**
- * Model Bio
- * 
- */
-export type Bio = Prisma.BioModel

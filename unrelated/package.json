@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "populate": "tsx --env-file=.env",
-    "populate_create_sample": "tsx --env-file=.env ./src/unrelated/create.ts"
+    "populate": "tsx --env-file=.env"
   },
   "keywords": [],
   "author": "",
