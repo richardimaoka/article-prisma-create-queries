@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { PrismaBetterSQLite3 } from "@prisma/adapter-better-sqlite3";
-import { PrismaClient } from "../../generated/prisma/client";
+import { PrismaClient } from "../generated/prisma/client";
 
 const dbPath = process.env.PRISMA_CLIENT_DATABASE_URL;
 if (!dbPath) {
@@ -26,7 +26,7 @@ async function main() {
   //     },
   //   });
 
-  const user = await prisma.userWithBio.create({
+  const user = await prisma.user.create({
     data: {
       name: "Alice",
     },
@@ -38,8 +38,13 @@ async function main() {
     data: {
       text: "Alice's Bio",
       user: {
-        connect: {
-          id: user.id,
+        connectOrCreate: {
+          where: {
+            id: user.id,
+          },
+          create: {
+            name: "Alice",
+          },
         },
       },
     },
@@ -47,7 +52,7 @@ async function main() {
 
   console.log("created bio:", bio);
 
-  const foundUser = await prisma.userWithBio.findUnique({
+  const foundUser = await prisma.user.findUnique({
     include: {
       bio: true,
     },
