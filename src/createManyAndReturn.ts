@@ -11,13 +11,16 @@ const adapter = new PrismaBetterSQLite3({ url: dbPath });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const user = await prisma.user.create({
-    data: {
-      name: "Alice",
-    },
+  const users = await prisma.user.createManyAndReturn({
+    data: [
+      { name: "alice" },
+      { name: "bob" },
+      { name: "charlie" },
+      { name: "devin" },
+    ],
   });
 
-  console.log("created user:", user);
+  console.log("created users:", users);
 }
 
 main()
