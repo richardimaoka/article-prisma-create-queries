@@ -12,11 +12,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/////////////////////////////////
+// unreleated 
+/////////////////////////////////
 model User {
   id   Int    @id @default(autoincrement())
   name String
 }
 
+/////////////////////////////////
+// one-to-one
+/////////////////////////////////
 model UserWithBio {
   id   Int    @id @default(autoincrement())
   name String

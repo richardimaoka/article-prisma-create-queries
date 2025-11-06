@@ -14,6 +14,11 @@ async function main() {
   const user = await prisma.userWithBio.create({
     data: {
       name: "Alice",
+      bio: {
+        create: {
+          text: "aaaaa",
+        },
+      },
     },
   });
 
