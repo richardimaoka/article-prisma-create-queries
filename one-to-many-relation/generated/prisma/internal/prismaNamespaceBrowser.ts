@@ -50,7 +50,7 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Bio: 'Bio'
+  Post: 'Post'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -74,13 +74,12 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const BioScalarFieldEnum = {
+export const PostScalarFieldEnum = {
   id: 'id',
-  text: 'text',
-  userId: 'userId'
+  authorId: 'authorId'
 } as const
 
-export type BioScalarFieldEnum = (typeof BioScalarFieldEnum)[keyof typeof BioScalarFieldEnum]
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
 export const SortOrder = {

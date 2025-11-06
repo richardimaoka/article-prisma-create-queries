@@ -50,7 +50,7 @@ path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.
  */
 export type User = Prisma.UserModel
 /**
- * Model Bio
+ * Model Post
  * 
  */
-export type Bio = Prisma.BioModel
+export type Post = Prisma.PostModel
