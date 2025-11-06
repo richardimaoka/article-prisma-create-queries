@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { PrismaBetterSQLite3 } from "@prisma/adapter-better-sqlite3";
-import { PrismaClient } from "../../generated/prisma/client";
+import { PrismaClient } from "../generated/prisma/client";
 
 const dbPath = process.env.PRISMA_CLIENT_DATABASE_URL;
 if (!dbPath) {
