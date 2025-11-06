@@ -9,5 +9,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/UserWithBio'
 export type * from './models/Bio'
 export type * from './commonInputTypes'

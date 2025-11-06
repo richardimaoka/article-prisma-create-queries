@@ -204,14 +204,14 @@ export type BioWhereInput = {
   id?: Prisma.IntFilter<"Bio"> | number
   text?: Prisma.StringFilter<"Bio"> | string
   userId?: Prisma.IntFilter<"Bio"> | number
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserWithBioScalarRelationFilter, Prisma.UserWithBioWhereInput>
 }
 
 export type BioOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   text?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  user?: Prisma.UserWithBioOrderByWithRelationInput
 }
 
 export type BioWhereUniqueInput = Prisma.AtLeast<{
@@ -221,7 +221,7 @@ export type BioWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BioWhereInput[]
   NOT?: Prisma.BioWhereInput | Prisma.BioWhereInput[]
   text?: Prisma.StringFilter<"Bio"> | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserWithBioScalarRelationFilter, Prisma.UserWithBioWhereInput>
 }, "id" | "userId">
 
 export type BioOrderByWithAggregationInput = {
@@ -246,7 +246,7 @@ export type BioScalarWhereWithAggregatesInput = {
 
 export type BioCreateInput = {
   text: string
-  user: Prisma.UserCreateNestedOneWithoutBioInput
+  user: Prisma.UserWithBioCreateNestedOneWithoutBioInput
 }
 
 export type BioUncheckedCreateInput = {
@@ -257,7 +257,7 @@ export type BioUncheckedCreateInput = {
 
 export type BioUpdateInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutBioNestedInput
+  user?: Prisma.UserWithBioUpdateOneRequiredWithoutBioNestedInput
 }
 
 export type BioUncheckedUpdateInput = {
@@ -387,21 +387,21 @@ export type BioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   id?: boolean
   text?: boolean
   userId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bio"]>
 
 export type BioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   text?: boolean
   userId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bio"]>
 
 export type BioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   text?: boolean
   userId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bio"]>
 
 export type BioSelectScalar = {
@@ -412,19 +412,19 @@ export type BioSelectScalar = {
 
 export type BioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "text" | "userId", ExtArgs["result"]["bio"]>
 export type BioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }
 export type BioIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }
 export type BioIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserWithBioDefaultArgs<ExtArgs>
 }
 
 export type $BioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Bio"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserWithBioPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -824,7 +824,7 @@ readonly fields: BioFieldRefs;
  */
 export interface Prisma__BioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserWithBioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserWithBioDefaultArgs<ExtArgs>>): Prisma.Prisma__UserWithBioClient<runtime.Types.Result.GetResult<Prisma.$UserWithBioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -15,12 +15,17 @@ datasource db {
 model User {
   id   Int    @id @default(autoincrement())
   name String
+}
+
+model UserWithBio {
+  id   Int    @id @default(autoincrement())
+  name String
   bio  Bio?
 }
 
 model Bio {
-  id     Int    @id @default(autoincrement())
+  id     Int         @id @default(autoincrement())
   text   String
-  user   User   @relation(fields: [userId], references: [id])
-  userId Int    @unique
+  user   UserWithBio @relation(fields: [userId], references: [id])
+  userId Int         @unique
 }

@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "create": "tsx --env-file=.env ./src/create.ts",
-    "createMany": "tsx --env-file=.env ./src/createMany.ts",
-    "createManyAndReturn": "tsx --env-file=.env ./src/createManyAndReturn.ts"
+    "populate": "tsx --env-file=.env",
+    "populate_create_sample": "tsx --env-file=.env ./src/unrelated/create.ts"
   },
   "keywords": [],
   "author": "",

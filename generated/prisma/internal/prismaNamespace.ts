@@ -391,6 +391,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  UserWithBio: 'UserWithBio',
   Bio: 'Bio'
 } as const
 
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "bio"
+    modelProps: "user" | "userWithBio" | "bio"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -482,6 +483,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserWithBio: {
+      payload: Prisma.$UserWithBioPayload<ExtArgs>
+      fields: Prisma.UserWithBioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserWithBioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserWithBioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        findFirst: {
+          args: Prisma.UserWithBioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserWithBioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        findMany: {
+          args: Prisma.UserWithBioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>[]
+        }
+        create: {
+          args: Prisma.UserWithBioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        createMany: {
+          args: Prisma.UserWithBioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserWithBioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>[]
+        }
+        delete: {
+          args: Prisma.UserWithBioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        update: {
+          args: Prisma.UserWithBioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserWithBioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserWithBioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserWithBioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserWithBioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserWithBioPayload>
+        }
+        aggregate: {
+          args: Prisma.UserWithBioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserWithBio>
+        }
+        groupBy: {
+          args: Prisma.UserWithBioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserWithBioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserWithBioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserWithBioCountAggregateOutputType> | number
         }
       }
     }
@@ -601,6 +676,14 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserWithBioScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type UserWithBioScalarFieldEnum = (typeof UserWithBioScalarFieldEnum)[keyof typeof UserWithBioScalarFieldEnum]
 
 
 export const BioScalarFieldEnum = {
@@ -734,6 +817,7 @@ export interface PrismaClientOptions {
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  userWithBio?: Prisma.UserWithBioOmit
   bio?: Prisma.BioOmit
 }
 
