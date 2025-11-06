@@ -1,4 +1,6 @@
 node_modules
 
-/generated/prisma
+/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node
 .env
+
+/prisma/dev.db
