@@ -21,12 +21,15 @@ model User {
 }
 
 /////////////////////////////////
-// one-to-one
+// one-to-one (optional)
 /////////////////////////////////
 model UserWithBio {
   id   Int    @id @default(autoincrement())
   name String
-  bio  Bio?
+  bio  Bio? //This has to be optional, otherwise, this error:
+  // Error parsing attribute "@relation": The relation field `bio` on Model `UserWithBio` is required.
+  // This is not valid because it's not possible to enforce this constraint on the database level.
+  // Please change the field type from `Bio` to `Bio?` to fix this.Prisma
 }
 
 model Bio {
