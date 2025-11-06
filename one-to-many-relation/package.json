@@ -1,0 +1,24 @@
+{
+  "name": "article-prisma-create-queries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "populate": "tsx --env-file=.env",
+    "populate_create_sample": "tsx --env-file=.env ./src/unrelated/create.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "prisma": "^6.19.0",
+    "tsx": "^4.20.6"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^6.19.0",
+    "@prisma/client": "^6.19.0",
+    "dotenv": "^17.2.3"
+  }
+}
