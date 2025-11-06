@@ -12,5 +12,8 @@
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
     "prisma": "^6.19.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
