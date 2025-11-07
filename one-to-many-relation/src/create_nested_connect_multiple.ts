@@ -47,16 +47,34 @@ async function main() {
 
   console.log("created post:", post2);
 
-  const foundUser = await prisma.user.findUnique({
+  const user2 = await prisma.user.create({
+    data: {
+      name: "Bob",
+      posts: {
+        connect: [
+          {
+            id: post1.id,
+          },
+          {
+            id: post2.id,
+          },
+        ],
+      },
+    },
+  });
+
+  console.log("created user:", user2);
+
+  const foundUser = await prisma.user.findMany({
     include: {
       posts: true,
     },
     where: {
-      id: user.id,
+      id: { in: [user.id, user2.id] },
     },
   });
 
-  console.log("found user:", foundUser);
+  console.log("found users:", foundUser);
 }
 
 main()

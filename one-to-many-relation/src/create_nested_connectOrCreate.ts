@@ -10,22 +10,7 @@ if (!dbPath) {
 const adapter = new PrismaBetterSQLite3({ url: dbPath });
 const prisma = new PrismaClient({ adapter });
 
-// The creation order MUST be:
-//   OK!! 1) user -> 2) bio(connect user)
-// The other way around is impossible:
-//   BAD! 1) bio  -> 2) user(connect bio)
-// because the bio needs userId as in schema.prisma
 async function main() {
-  // As described above, it is impossible to create bio ONLY in advance.
-  //   const bio = await prisma.bio.create({
-  //     // TypeScript Error: Property 'user' is missing in type '{ text: string; }'
-  //     //                   but required in type 'BioCreateInput'.ts(2322)
-  //     data: {
-  //       text: "Alice's bio",
-  //       // userId or user is required
-  //     },
-  //   });
-
   const user = await prisma.user.create({
     data: {
       name: "Alice",
@@ -34,10 +19,11 @@ async function main() {
 
   console.log("created user:", user);
 
-  const bio = await prisma.bio.create({
+  const post1 = await prisma.post.create({
     data: {
-      text: "Alice's Bio",
-      user: {
+      title: "Alice's post 1",
+      body: "the article body",
+      author: {
         connectOrCreate: {
           where: {
             id: user.id,
@@ -50,11 +36,25 @@ async function main() {
     },
   });
 
-  console.log("created bio:", bio);
+  console.log("created post:", post1);
+
+  const post2 = await prisma.post.create({
+    data: {
+      title: "Alice's post 2",
+      body: "the article body",
+      author: {
+        connect: {
+          id: user.id,
+        },
+      },
+    },
+  });
+
+  console.log("created post:", post2);
 
   const foundUser = await prisma.user.findUnique({
     include: {
-      bio: true,
+      posts: true,
     },
     where: {
       id: user.id,

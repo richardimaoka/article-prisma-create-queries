@@ -14,11 +14,15 @@ async function main() {
   const user = await prisma.user.create({
     data: {
       name: "Alice",
-      bio: {
+      posts: {
         create: {
-          text: "aaaaa",
+          title: "Alice's post",
+          body: "the article body.",
         },
       },
+    },
+    include: {
+      posts: true,
     },
   });
 

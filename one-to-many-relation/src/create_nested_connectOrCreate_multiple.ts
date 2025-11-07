@@ -24,8 +24,13 @@ async function main() {
       title: "Alice's post 1",
       body: "the article body",
       author: {
-        connect: {
-          id: user.id,
+        connectOrCreate: {
+          where: {
+            id: user.id,
+          },
+          create: {
+            name: "Alice",
+          },
         },
       },
     },
@@ -47,16 +52,46 @@ async function main() {
 
   console.log("created post:", post2);
 
-  const foundUser = await prisma.user.findUnique({
+  const user2 = await prisma.user.create({
+    data: {
+      name: "Bob",
+      posts: {
+        connectOrCreate: [
+          {
+            where: {
+              id: post1.id,
+            },
+            create: {
+              title: "titlte 1A",
+              body: "artciclcllcl",
+            },
+          },
+          {
+            where: {
+              id: post2.id,
+            },
+            create: {
+              title: "title 2B",
+              body: "artciclcllcl",
+            },
+          },
+        ],
+      },
+    },
+  });
+
+  console.log("created user:", post2);
+
+  const foundUser = await prisma.user.findMany({
     include: {
       posts: true,
     },
     where: {
-      id: user.id,
+      id: { in: [user.id, user2.id] },
     },
   });
 
-  console.log("found user:", foundUser);
+  console.log("found users:", foundUser);
 }
 
 main()

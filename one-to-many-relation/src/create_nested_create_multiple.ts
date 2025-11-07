@@ -14,49 +14,25 @@ async function main() {
   const user = await prisma.user.create({
     data: {
       name: "Alice",
+      posts: {
+        create: [
+          {
+            title: "Alice's post",
+            body: "the article body.",
+          },
+          {
+            title: "Alice's second post",
+            body: "the article body. 2",
+          },
+        ],
+      },
+    },
+    include: {
+      posts: true,
     },
   });
 
   console.log("created user:", user);
-
-  const post1 = await prisma.post.create({
-    data: {
-      title: "Alice's post 1",
-      body: "the article body",
-      author: {
-        connect: {
-          id: user.id,
-        },
-      },
-    },
-  });
-
-  console.log("created post:", post1);
-
-  const post2 = await prisma.post.create({
-    data: {
-      title: "Alice's post 2",
-      body: "the article body",
-      author: {
-        connect: {
-          id: user.id,
-        },
-      },
-    },
-  });
-
-  console.log("created post:", post2);
-
-  const foundUser = await prisma.user.findUnique({
-    include: {
-      posts: true,
-    },
-    where: {
-      id: user.id,
-    },
-  });
-
-  console.log("found user:", foundUser);
 }
 
 main()
